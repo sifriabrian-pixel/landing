@@ -823,4 +823,16 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 
 // Plans grid responsive
 function fixPlans(){
-  const w = document.querySel
+  const w = document.querySelector('.plans-wrap');
+  if(!w) return;
+  if(window.innerWidth < 640){
+    w.style.gridTemplateColumns = '1fr';
+  } else {
+    w.style.gridTemplateColumns = '1fr 1fr';
+  }
+}
+fixPlans();
+window.addEventListener('resize', fixPlans);
+</script>
+</body>
+</html>
