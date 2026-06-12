@@ -117,8 +117,8 @@ nav.scrolled{
 .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--blue-lt);animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .hero h1{
-  font-size:clamp(2.8rem,4.5vw,4.6rem);font-weight:900;line-height:1.05;
-  letter-spacing:-0.04em;color:#fff;margin-bottom:22px;
+  font-size:clamp(3rem,5.5vw,6rem);font-weight:900;line-height:1.0;
+  letter-spacing:-0.05em;color:#fff;margin-bottom:22px;
   opacity:0;transform:translateY(20px);
   animation:fadeUp .7s .25s ease forwards;
 }
@@ -316,29 +316,41 @@ section{padding:96px 5%}
   position:relative;overflow:hidden;
   transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
 }
+/* Top accent bar — per-agent color via inline var */
 .agent-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--blue),var(--blue-lt));
+  background:var(--agent-color,var(--blue));
   transform:scaleX(0);transform-origin:left;transition:transform .35s ease;
 }
-.agent-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(37,99,235,0.12);border-color:rgba(37,99,235,0.3)}
+.agent-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 48px color-mix(in srgb,var(--agent-color,var(--blue)) 15%,transparent);
+  border-color:color-mix(in srgb,var(--agent-color,var(--blue)) 40%,transparent);
+}
 .agent-card:hover::before{transform:scaleX(1)}
+
+/* Per-agent color themes */
+.agent-card.sdr   { --agent-color:#2563eb; --agent-bg:#eff6ff; --agent-border:#bfdbfe; --agent-text:#1d4ed8; --agent-icon-from:#1e40af; --agent-icon-to:#2563eb; --agent-shadow:rgba(37,99,235,0.3); }
+.agent-card.inbound { --agent-color:#16a34a; --agent-bg:#f0fdf4; --agent-border:#bbf7d0; --agent-text:#15803d; --agent-icon-from:#14532d; --agent-icon-to:#16a34a; --agent-shadow:rgba(22,163,74,0.3); }
+.agent-card.followup { --agent-color:#d97706; --agent-bg:#fffbeb; --agent-border:#fde68a; --agent-text:#b45309; --agent-icon-from:#78350f; --agent-icon-to:#d97706; --agent-shadow:rgba(217,119,6,0.3); }
+.agent-card.cobrador { --agent-color:#7c3aed; --agent-bg:#f5f3ff; --agent-border:#ddd6fe; --agent-text:#6d28d9; --agent-icon-from:#4c1d95; --agent-icon-to:#7c3aed; --agent-shadow:rgba(124,58,237,0.3); }
+
 .agent-tag{
   display:inline-flex;align-items:center;gap:6px;
-  background:#eff6ff;border:1px solid #bfdbfe;
+  background:var(--agent-bg,#eff6ff);border:1px solid var(--agent-border,#bfdbfe);
   border-radius:100px;padding:4px 12px;
-  font-size:11px;font-weight:600;color:var(--blue);
+  font-size:11px;font-weight:600;color:var(--agent-text,var(--blue));
   letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;
 }
 .agent-icon{
   width:50px;height:50px;border-radius:13px;
-  background:linear-gradient(135deg,#1e40af,var(--blue));
+  background:linear-gradient(135deg,var(--agent-icon-from,#1e40af),var(--agent-icon-to,var(--blue)));
   display:flex;align-items:center;justify-content:center;
-  margin-bottom:18px;box-shadow:0 6px 18px rgba(37,99,235,0.3);
+  margin-bottom:18px;box-shadow:0 6px 18px var(--agent-shadow,rgba(37,99,235,0.3));
 }
 .agent-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .agent-card h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:3px}
-.agent-role{font-size:.78rem;font-weight:600;color:var(--blue);margin-bottom:10px;letter-spacing:.02em}
+.agent-role{font-size:.78rem;font-weight:600;color:var(--agent-text,var(--blue));margin-bottom:10px;letter-spacing:.02em}
 .agent-tagline{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:9px;line-height:1.4}
 .agent-card p{font-size:.875rem;color:var(--soft);line-height:1.7}
 .agents-cta{
@@ -557,7 +569,7 @@ footer{
         <span class="badge-dot"></span>
         Infraestructura comercial con IA
       </div>
-      <h1>Escalá tus ventas.<br><em>Sin escalar tu equipo.</em></h1>
+      <h1>Escalá tus ventas.<br><em>Sin sumar gente.</em></h1>
       <p class="hero-sub">Pulsetrack te da un equipo comercial con IA que trabaja solo las 24 horas — sin contratar, sin depender de más inversión en marketing.</p>
       <div class="hero-btns">
         <a href="#agentes" class="btn-primary">
@@ -689,7 +701,7 @@ footer{
       <p class="s-sub">Cada agente cubre una etapa del ciclo de ventas. Trabajando solos o en equipo, operan de forma autónoma las 24 horas.</p>
     </div>
     <div class="agents-grid">
-      <div class="agent-card reveal" style="transition-delay:.06s">
+      <div class="agent-card sdr reveal" style="transition-delay:.06s">
         <div class="agent-tag">SDR Agent</div>
         <div class="agent-icon">
           <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
@@ -699,7 +711,7 @@ footer{
         <p class="agent-tagline">Inicia conversaciones con tus prospectos de forma autónoma.</p>
         <p>Carga la base, el agente arranca solo: escribe, envía y hace seguimiento sin intervención humana.</p>
       </div>
-      <div class="agent-card reveal" style="transition-delay:.12s">
+      <div class="agent-card inbound reveal" style="transition-delay:.12s">
         <div class="agent-tag">Inbound Agent</div>
         <div class="agent-icon">
           <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
@@ -709,7 +721,7 @@ footer{
         <p class="agent-tagline">Ningún lead sin respuesta.</p>
         <p>Califica, responde y gestiona cada consulta entrante al instante, cualquier día y a cualquier hora.</p>
       </div>
-      <div class="agent-card reveal" style="transition-delay:.18s">
+      <div class="agent-card followup reveal" style="transition-delay:.18s">
         <div class="agent-tag">Follow-up Agent</div>
         <div class="agent-icon">
           <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
@@ -719,15 +731,15 @@ footer{
         <p class="agent-tagline">Tu pipeline no se enfría.</p>
         <p>Reactiva leads dormidos, mantiene conversaciones activas y recupera oportunidades que parecían perdidas.</p>
       </div>
-      <div class="agent-card reveal" style="transition-delay:.24s">
-        <div class="agent-tag">Onboarding Agent</div>
+      <div class="agent-card cobrador reveal" style="transition-delay:.24s">
+        <div class="agent-tag">Cobrador Agent</div>
         <div class="agent-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
         </div>
-        <h3>Onboarding Agent</h3>
-        <div class="agent-role">Activación automática de clientes</div>
-        <p class="agent-tagline">Convierte nuevos clientes en clientes activos.</p>
-        <p>Los acompaña en sus primeros pasos sin que tu equipo tenga que intervenir.</p>
+        <h3>Cobrador Agent</h3>
+        <div class="agent-role">Gestión de cobros automatizada</div>
+        <p class="agent-tagline">Cobrá sin conversaciones incómodas.</p>
+        <p>Envía recordatorios, gestiona vencimientos y hace seguimiento de pagos pendientes sin que tu equipo intervenga.</p>
       </div>
     </div>
     <div class="agents-cta reveal" style="transition-delay:.3s">
