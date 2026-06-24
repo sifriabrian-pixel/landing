@@ -63,7 +63,7 @@ nav.scrolled{
 .hero{
   background:var(--dark);min-height:100vh;
   display:flex;align-items:center;
-  padding:120px 5% 90px;position:relative;overflow:hidden;
+  padding:100px 5% 72px;position:relative;overflow:hidden;
 }
 .hero::before{
   content:'';position:absolute;inset:0;
@@ -75,7 +75,7 @@ nav.scrolled{
 .hero-layout{
   position:relative;z-index:1;
   display:grid;grid-template-columns:1fr 1fr;
-  gap:64px;align-items:center;
+  gap:40px;align-items:center;
   max-width:1200px;width:100%;margin:0 auto;
 }
 .hero-demo{
@@ -106,27 +106,27 @@ nav.scrolled{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(37,99,235,0.18);border:1px solid rgba(59,130,246,0.35);
   border-radius:100px;padding:7px 18px;
-  font-size:13px;font-weight:500;color:#93c5fd;margin-bottom:30px;
+  font-size:13px;font-weight:500;color:#93c5fd;margin-bottom:18px;
   opacity:0;transform:translateY(16px);
   animation:fadeUp .6s .1s ease forwards;
 }
 .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--blue-lt);animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .hero h1{
-  font-size:clamp(3rem,5.5vw,6rem);font-weight:900;line-height:1.0;
-  letter-spacing:-0.05em;color:#fff;margin-bottom:22px;
+  font-size:clamp(2.2rem,3.8vw,4rem);font-weight:900;line-height:1.05;
+  letter-spacing:-0.04em;color:#fff;margin-bottom:16px;
   opacity:0;transform:translateY(20px);
   animation:fadeUp .7s .25s ease forwards;
 }
 .hero h1 em{font-style:normal;color:var(--blue-lt)}
 .hero-sub{
-  font-size:1.05rem;color:#94a3b8;max-width:520px;
-  font-weight:400;line-height:1.75;margin-bottom:38px;
+  font-size:1rem;color:#94a3b8;max-width:520px;
+  font-weight:400;line-height:1.7;margin-bottom:24px;
   opacity:0;transform:translateY(20px);
   animation:fadeUp .7s .45s ease forwards;
 }
 .hero-btns{
-  display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:44px;
+  display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:28px;
   opacity:0;transform:translateY(20px);
   animation:fadeUp .7s .6s ease forwards;
 }
